@@ -1,0 +1,11 @@
+)  mcp_server.AddTool("emo_dance", "Make EMO robot dance or wave hands",
+        PropertyList({ Property("action", kPropertyTypeString) }),
+        [](const PropertyList& properties) -> ToolResult {
+            std::string act = properties["action"].value<std::string>();
+            if (act == "wave") {
+                ServoController::GetInstance().WaveHand();
+                return "EMO waved hands";
+            }
+            ServoController::GetInstance().DanceMove();
+            return "EMO is dancing!";
+        });
